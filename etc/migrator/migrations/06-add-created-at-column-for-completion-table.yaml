@@ -1,0 +1,30 @@
+databaseChangeLog:
+  - changeSet:
+      id: 1
+      author: Siarhei Shveadko
+      changes:
+        - addColumn:
+            tableName: completion
+            columns:
+              - column:
+                  name: created_at
+                  type: TIMESTAMP WITH TIME ZONE
+                  constraints:
+                    nullable: true
+        - sql:
+            sql: |
+              UPDATE completion 
+              SET created_at = (question->>'created_at')::TIMESTAMP WITH TIME ZONE
+        - addNotNullConstraint:
+            tableName: completion
+            columnName: created_at
+            columnDataType: TIMESTAMP WITH TIME ZONE
+        - addIndex:
+            tableName: completion
+            columns:
+              - created_at
+            indexName: idx_completion_created_at
+      rollback:
+        - dropColumn:
+            tableName: completion
+            columnName: created_at

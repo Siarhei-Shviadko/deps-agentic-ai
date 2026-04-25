@@ -1,0 +1,74 @@
+databaseChangeLog:
+  - changeSet:
+      id: 1
+      author: Siarhei Shveadko
+      changes:
+        - createTable:
+            tableName: conversation
+            columns:
+              - column:
+                  name: id
+                  type: VARCHAR(150)
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: tenant_id
+                  type: VARCHAR(150)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: agent_vendor_id
+                  type: VARCHAR(150)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: mode_id
+                  type: VARCHAR(150)
+                  constraints:
+                    nullable: false
+                    foreignKeyName: fk_conversation_mode
+                    references:
+                      tableName: mode
+                      columnName: mode_id
+                      onDelete: CASCADE
+              - column:
+                  name: context
+                  type: JSONB
+                  constraints:
+                    nullable: false
+              - column:
+                  name: relation
+                  type: TEXT
+                  constraints:
+                    nullable: true
+              - column:
+                  name: title
+                  type: VARCHAR(250)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: created_by
+                  type: VARCHAR(250)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: created_at
+                  type: TIMESTAMPTZ
+                  constraints:
+                    nullable: false
+              - column:
+                  name: updated_at
+                  type: TIMESTAMPTZ
+                  constraints:
+                    nullable: false
+                    defaultValueComputed: CURRENT_TIMESTAMP
+        - createIndex:
+            tableName: conversation
+            indexName: idx_conversation_relation
+            columns:
+              - column:
+                  name: relation
+      rollback:
+        - dropTable:
+            tableName: conversation

@@ -1,0 +1,16 @@
+version: "3.4"
+
+services:
+  api:
+    image: "agentic-ai-dev"
+    container_name: "deps-agentic-ai"
+    command: python -m deps_agentic_ai serve
+
+  consumer:
+    image: "agentic-ai-dev"
+    container_name: "deps-agentic-ai-consumer"
+    command: python -m deps_agentic_ai dispatch
+
+  migrator:
+    image: "agentic-ai-migrator"
+    container_name: "deps-agentic-ai-migrator"

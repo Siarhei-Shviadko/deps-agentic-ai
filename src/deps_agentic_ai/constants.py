@@ -1,0 +1,25 @@
+PROJECT_NAME = "agentic-ai"
+DESCRIPTION = "Chat with AI agents"
+V1_PREFIX = "/v1"
+BASE_API_PREFIX = "/api/agentic-ai"
+V1_API_PREFIX = BASE_API_PREFIX + V1_PREFIX
+INTERNAL_API_PREFIX = BASE_API_PREFIX + "/internal"
+SWAGGER_DOC_URL = "/docs"
+
+DOCUMENTS_EXCHANGER = "Documents"
+
+EVENTS_QUEUE = "agentic-ai-events"
+COMMANDS_QUEUE = "agentic-ai-commands"
+
+COMMANDS_CHANNEL = "AgenticAiCommands"
+COMMANDS_REPLIES_CHANNEL = "AgenticAiCommandsReplies"
+
+TOOL_SET_DESTINATION = "ToolSet"
+MODE_DESTINATION = "Mode"
+
+AGENT_VENDOR_DESTINATION = "AgentVendor"
+
+CONVERSATION_DESTINATION = "Conversation"
+
+DOCUMENT_DESTINATION = "Documents"
+DOCUMENT_TYPE_DESTINATION = "DocumentType"

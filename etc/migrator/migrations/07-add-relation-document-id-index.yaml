@@ -1,0 +1,14 @@
+databaseChangeLog:
+  - changeSet:
+      id: 1
+      author: Viktor_Kovtun
+      changes:
+        - sql:
+            sql: |
+              CREATE INDEX IF NOT EXISTS idx_conversation_relation_document_id
+              ON conversation ((relation::jsonb->>'documentId'))
+              WHERE relation IS NOT NULL;
+      rollback:
+        - sql:
+            sql: |
+              DROP INDEX IF EXISTS idx_conversation_relation_document_id;

@@ -1,0 +1,46 @@
+databaseChangeLog:
+  - changeSet:
+      id: 1
+      author: Siarhei Shveadko
+      changes:
+        - createTable:
+            tableName: completion
+            columns:
+              - column:
+                  name: id
+                  type: VARCHAR(150)
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: question
+                  type: JSONB
+                  constraints:
+                    nullable: false
+              - column:
+                  name: execution_context
+                  type: JSONB
+                  constraints:
+                    nullable: false
+              - column:
+                  name: answer
+                  type: JSONB
+                  constraints:
+                    nullable: true
+              - column:
+                  name: conversation_id
+                  type: VARCHAR(150)
+                  constraints:
+                    nullable: false
+                    foreignKeyName: fk_completion_conversation
+                    references:
+                      tableName: conversation
+                      columnName: id
+                      onDelete: CASCADE
+        - addIndex:
+            tableName: completion
+            columns:
+              - conversation_id              
+      rollback:
+        - dropTable:
+            tableName: completion

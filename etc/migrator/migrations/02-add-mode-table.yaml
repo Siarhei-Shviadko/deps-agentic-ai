@@ -1,0 +1,33 @@
+databaseChangeLog:
+- changeSet:
+    id: 1
+    author: Palina Pashkouskaya
+    changes:
+    - createTable:
+        tableName: mode
+        columns:
+        - column:
+            constraints:
+              primaryKey: true
+              primaryKeyName: mode_pk
+            name: mode_id
+            type: VARCHAR
+        - column:
+            constraints:
+              nullable: false
+            name: code
+            type: VARCHAR
+        - column:
+            constraints:
+              nullable: false
+            name: tool_set_ids
+            type: JSONB
+        - column:
+            constraints:
+              nullable: false
+            name: created_at
+            type: TIMESTAMP WITH TIMEZONE
+
+    rollback:
+    - dropTable:
+        tableName: mode

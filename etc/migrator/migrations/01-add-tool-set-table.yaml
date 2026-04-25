@@ -1,0 +1,38 @@
+databaseChangeLog:
+- changeSet:
+    id: 1
+    author: Palina Pashkouskaya
+    changes:
+    - createTable:
+        tableName: tool_set
+        columns:
+        - column:
+            constraints:
+              primaryKey: true
+              primaryKeyName: tool_set_pk
+            name: tool_set_id
+            type: VARCHAR
+        - column:
+            constraints:
+              nullable: false
+            name: code
+            type: VARCHAR
+        - column:
+            constraints:
+              nullable: false
+            name: name
+            type: VARCHAR
+        - column:
+            constraints:
+              nullable: false
+            name: tools
+            type: JSONB
+        - column:
+            constraints:
+              nullable: false
+            name: created_at
+            type: TIMESTAMP WITH TIMEZONE
+
+    rollback:
+    - dropTable:
+        tableName: tool_set

@@ -1,0 +1,57 @@
+databaseChangeLog:
+- changeSet:
+    id: 1
+    author: Siarhei Shveadko
+    changes:
+    - createTable:
+        tableName: agent_vendor
+        columns:
+        - column:
+            constraints:
+              primaryKey: true
+              primaryKeyName: agent_vendor_pk
+            name: id
+            type: VARCHAR
+        - column:
+            constraints:
+              nullable: false
+            name: name
+            type: VARCHAR
+        - column:
+            constraints:
+              nullable: false
+            name: description
+            type: VARCHAR
+        - column:
+            constraints:
+              nullable: false
+            name: connection_parameters
+            type: JSONB
+        - column:
+            constraints:
+              nullable: false
+            name: active
+            type: BOOLEAN
+        - column:
+            constraints:
+              nullable: true
+            name: avatar_url
+            type: VARCHAR
+
+    rollback:
+    - dropTable:
+        tableName: agent_vendor
+
+- changeSet:
+    id: 2
+    author: Siarhei Shveadko
+    changes:
+    - addUniqueConstraint:
+        columnNames: name
+        tableName: agent_vendor
+        constraintName: agent_vendor_name_uk
+
+    rollback:
+    - dropUniqueConstraint:
+        tableName: agent_vendor
+        constraintName: agent_vendor_name_uk
