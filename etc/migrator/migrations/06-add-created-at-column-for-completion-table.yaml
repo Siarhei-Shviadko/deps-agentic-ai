@@ -19,11 +19,13 @@ databaseChangeLog:
             tableName: completion
             columnName: created_at
             columnDataType: TIMESTAMP WITH TIME ZONE
-        - addIndex:
+        - createIndex:
+            indexName: idx_completion_created_at
             tableName: completion
             columns:
-              - created_at
-            indexName: idx_completion_created_at
+              - column:
+                  name: created_at
+      validCheckSum: ANY
       rollback:
         - dropColumn:
             tableName: completion

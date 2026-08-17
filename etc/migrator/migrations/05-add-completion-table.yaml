@@ -37,10 +37,13 @@ databaseChangeLog:
                       tableName: conversation
                       columnName: id
                       onDelete: CASCADE
-        - addIndex:
+        - createIndex:
+            indexName: idx_completion_conversation_id
             tableName: completion
             columns:
-              - conversation_id              
+              - column:
+                  name: conversation_id
+      validCheckSum: ANY
       rollback:
         - dropTable:
             tableName: completion
